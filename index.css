@@ -11,11 +11,12 @@
   justify-content: space-between;
   margin: 10px;
   width: auto;
-  background-color: rgb(1, 163, 144);
+  background-color: rgb(240, 133, 33);
   border-radius: 5px;
   box-shadow: -1px 4px 20px 14px rgba(0, 0, 0, 0.2);
   color: black;
   font-weight: bold;
+  transition: box-shadow 0.2s, background 0.2s;
 }
 
 .logo {
@@ -59,6 +60,12 @@
   border-right: 0;
   color: #000000;
   outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.search-container .search-input:focus {
+  border: 1.5px solid #0768b3;
+  box-shadow: 0 0 0 2px #b2ebf2;
 }
 
 .search-container .search-btn {
@@ -72,9 +79,13 @@
   cursor: pointer;
   border: none;
   outline: none;
+  transition: background 0.2s, transform 0.2s;
 }
+
 .search-container .search-btn:hover {
   background-color: #016034;
+  filter: brightness(1.1);
+  transform: translateY(-2px) scale(1.04);
 }
 
 .restaurant-list {
@@ -91,15 +102,18 @@
   padding: 10px;
   margin: 20px;
   cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  box-shadow: 0 8px 24px 0 rgba(1, 163, 144, 0.18);
+  transform: scale(1.07);
 }
 
 .card > img {
   width: 100%;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .card > span {
@@ -136,6 +150,7 @@
   padding: 20px 10px 20px;
   border-radius: 5px;
   box-shadow: -1px 4px 20px 14px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s, background 0.2s;
 }
 
 .footer > i {
@@ -244,8 +259,47 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 30px;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .login-button:hover {
   background-color: #016034;
+  filter: brightness(1.1);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.error-component {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 20px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #e0f7fa;
+}
+::-webkit-scrollbar-thumb {
+  background: #b2ebf2;
+  border-radius: 8px;
+}
+
+@media (max-width: 700px) {
+  .header,
+  .footer {
+    margin: 10px 2px;
+    padding: 10px 4px;
+    border-radius: 6px;
+  }
+  .card {
+    margin: 10px 2px;
+    padding: 10px 4px;
+    border-radius: 6px;
+  }
+  .search-container {
+    padding: 10px 2px;
+    border-radius: 6px;
+  }
 }

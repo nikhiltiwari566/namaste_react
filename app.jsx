@@ -6,35 +6,47 @@ import ReactDOM from 'react-dom/client';
 import Header from './src/components/Header';
 import Body from './src/components/Body';
 import Footer from './src/components/Footer';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import Home from './src/components/Home';
+import Contact from './src/components/Contact';
+import ErrorComponent from './src/components/ErrorComponent';
+import RestaurantMenu from './src/components/RestaurantMenu';
 
-/* My Food App structure will look like this, 
-            1) Header
-                - Logo
-                - Nav Items(right side)
-                - Cart
-            2) Body
-                - Search bar
-                - Restaurants List
-                    - Restaurant card
-                        - Image
-                        - Name
-                        - Rating
-            3) Footer
-                - Links
-                - Copyrights
-       
-*/
-
-// AppLayout component to render: Header, Body and Footer Component
 const AppLayout = () => {
   return (
     <React.Fragment>
       <Header />
-      <Body />
+      <Outlet />
       <Footer />
     </React.Fragment>
   );
 };
 
+const appRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <AppLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Body />,
+      },
+      {
+        path: '/about',
+        element: <Home />,
+      },
+      {
+        path: '/contact',
+        element: <Contact />,
+      },
+      {
+        path: '/restaurants/:resId',
+        element: <RestaurantMenu />,
+      },
+    ],
+    errorElement: <ErrorComponent />,
+  },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter} />);
