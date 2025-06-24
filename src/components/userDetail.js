@@ -3,26 +3,42 @@ import React from 'react';
 class UserDetail extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      userInfo: {
+        name: 'John Deo',
+        avatar_url:
+          'https://th.bing.com/th/id/OIP.PZaM2TzeWG3wTRBI37kmBAHaHr?rs=1&pid=ImgDetMain', // Placeholder avatar URL
+      },
+    };
+  }
+
+  async componentDidMount() {
+    // Simulating fetching user data
+    const data = await fetch('https://api.github.com/users/nikhiltiwari566');
+    const user = await data.json();
+    console.log('user data', user);
+    this.setState({
+      userInfo: {
+        name: user.name,
+        avatar_url: user.avatar_url,
+      },
+    });
   }
 
   render() {
-    const { user } = this.props;
+    const { name, avatar_url } = this.state.userInfo;
+    console.log(avatar_url);
+
     return (
       <div className='user-detail'>
         <h2>User Detail</h2>
+        <img className='user-avatar' src={avatar_url} alt='User Avatar' />
         <p>
-          <strong>Name:</strong> {user.name}
-        </p>
-        <p>
-          <strong>Email:</strong> {user.email}
-        </p>
-        <p>
-          <strong>Phone:</strong> {user.phone}
-        </p>
-        <p>
-          <strong>Address:</strong> {user.address}
+          <strong>Name:</strong> {name}
         </p>
       </div>
     );
   }
 }
+
+export default UserDetail;

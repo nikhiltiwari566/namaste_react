@@ -303,3 +303,19 @@
     border-radius: 6px;
   }
 }
+
+.user-detail {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  border: #000000 1px solid;
+}
+
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
