@@ -7,11 +7,11 @@ import Header from './src/components/Header';
 import Body from './src/components/Body';
 import Footer from './src/components/Footer';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import Home from './src/components/Home';
-import Contact from './src/components/Contact';
 import ErrorComponent from './src/components/ErrorComponent';
 import RestaurantMenu from './src/components/RestaurantMenu';
 
+const Home = React.lazy(() => import('./src/components/Home'));
+const Contact = React.lazy(() => import('./src/components/Contact'));
 const AppLayout = () => {
   return (
     <React.Fragment>
@@ -33,11 +33,19 @@ const appRouter = createBrowserRouter([
       },
       {
         path: '/about',
-        element: <Home />,
+        element: (
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Home />
+          </React.Suspense>
+        ),
       },
       {
         path: '/contact',
-        element: <Contact />,
+        element: (
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Contact />
+          </React.Suspense>
+        ),
       },
       {
         path: '/restaurants/:resId',
