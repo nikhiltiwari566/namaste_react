@@ -22,6 +22,7 @@ const Body = () => {
       'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7041&lng=77.1025&page_type=DESKTOP_WEB_LISTING'
     );
     const json = await data.json();
+
     setRestaurants(
       json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle.restaurants
     );
@@ -35,16 +36,18 @@ const Body = () => {
   }
 
   if (restaurants.length === 0) {
+    console.log('restaurants', restaurants.length);
+
     return <Shimmer />;
   }
 
   return (
     <>
-      <div className='search-container'>
-        <div className='online-status'>
+      <div className=' items-center m-2 p-2 bg-amber-600'>
+        <div className='flex'>
           {isOnlineStatus ? (
-            <div className='status-container'>
-              <div className='status-icon'>
+            <div className='flex justify-center items-center status-container'>
+              <div className=''>
                 <svg
                   width='24'
                   height='24'
@@ -55,21 +58,21 @@ const Body = () => {
                   <circle cx='12' cy='12' r='10' fill='#28a745' />
                 </svg>
               </div>
-              <span className='status-indicator online'>Online</span>
+              <span className='pl-2'>Online</span>
             </div>
           ) : (
-            <span className='status-indicator offline'>Offline</span>
+            <span className='pl-2'>Offline</span>
           )}
         </div>
         <input
           type='text'
-          className='search-input'
+          className='border border-gray-300 rounded p-2 m-2 w-1/3 '
           placeholder='Search a restaurant you want...'
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         ></input>
         <button
-          className='search-btn'
+          className='bg-pink-500 text-white px-4 py-2 rounded mb-2 capitalize font-bold'
           onClick={() => {
             // filter the data
             const data = restaurants.filter((restaurant) =>
@@ -84,7 +87,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className='restaurant-list'>
+      <div className=' flex flex-wrap justify-center bg-amber-300'>
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link

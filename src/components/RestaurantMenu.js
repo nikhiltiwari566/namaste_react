@@ -1,23 +1,19 @@
 import { useEffect, useState } from 'react';
 import Shimmer from './Shimmer';
 import useRestaurantMenu from '../utils/useRestaurantMenu'; // Assuming you have this custom hook
-
+import RestaurantCategories from './ReastaurantCategories'; // Assuming you have this component
 const RestaurantMenu = () => {
-  const { menu, loading, restaurant } = useRestaurantMenu();
+  const { menu, loading, restaurant, categories } = useRestaurantMenu();
 
   if (loading) return <Shimmer />;
 
   return (
-    <div className='restaurant-menu'>
-      <h1>{restaurant.name}</h1>
-      <h3>{restaurant.cuisines.join(', ')}</h3>
-      <ul>
-        {menu.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name} - Rs.{item.card.info.price / 100}
-          </li>
-        ))}
-      </ul>
+    <div className=' text-center'>
+      <h1 className='font-bold my-6 text-lg'>{restaurant.name}</h1>
+      <p className='text-gray-600'>{restaurant.cuisines.join(', ')}</p>
+      {categories.map((category) => (
+        <RestaurantCategories key={category.card.card.title} data={category} />
+      ))}
     </div>
   );
 };

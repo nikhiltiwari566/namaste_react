@@ -5,6 +5,7 @@ const useRestaurantMenu = (restaurantId) => {
   const [restaurant, setRestaurant] = useState({});
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
   const { resId } = useParams();
   useEffect(() => {
     const fetchMenu = async () => {
@@ -20,6 +21,13 @@ const useRestaurantMenu = (restaurantId) => {
           data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card
             .itemCards
         );
+        const categories =
+          data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter(
+            (c) =>
+              c.card.card?.['@type'] ===
+              'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
+          );
+        setCategories(categories);
       } catch (error) {
         console.error('Error fetching restaurant menu:', error);
       } finally {
@@ -30,7 +38,7 @@ const useRestaurantMenu = (restaurantId) => {
     fetchMenu();
   }, [restaurantId]);
 
-  return { menu, loading, restaurant };
+  return { menu, loading, restaurant, categories };
 };
 
 export default useRestaurantMenu;
