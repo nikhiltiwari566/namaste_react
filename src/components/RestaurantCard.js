@@ -1,6 +1,5 @@
 import { IMG_CDN_URL } from '../utils/constants';
 
-// Restaurant card component: Image, name, cuisine
 const RestaurantCard = ({
   cloudinaryImageId,
   name,
@@ -9,6 +8,7 @@ const RestaurantCard = ({
   sla,
   costForTwo,
   avgRating,
+  isOpen,
 }) => {
   return (
     <div className='bg-white m-2 p-2 w-65 shadow-lg rounded-lg min-h-80'>
@@ -22,7 +22,7 @@ const RestaurantCard = ({
       <span>
         <h4
           style={
-            avgRating < 4 ? { backgroundColor: 'red' } : { color: 'white' }
+            avgRating < 4 ? { backgroundColor: 'red' } : { color: 'black' }
           }
         >
           <i className='fa-solid fa-star'></i>
@@ -35,4 +35,21 @@ const RestaurantCard = ({
   );
 };
 
-export default RestaurantCard;
+const withOpenStatus = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className='absolute ml-4 p-1 bg-black rounded-md text-sm font-semibold m-2'>
+          {props.isOpen ? (
+            <span className='text-green-500'>Open</span>
+          ) : (
+            <span className='text-red-500'>Closed</span>
+          )}
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
+export default withOpenStatus(RestaurantCard);

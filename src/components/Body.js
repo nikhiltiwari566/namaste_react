@@ -40,30 +40,11 @@ const Body = () => {
 
     return <Shimmer />;
   }
+  console.log('restaurants', restaurants);
 
   return (
     <>
       <div className=' items-center m-2 p-2 bg-amber-600'>
-        <div className='flex'>
-          {isOnlineStatus ? (
-            <div className='flex justify-center items-center status-container'>
-              <div className=''>
-                <svg
-                  width='24'
-                  height='24'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <circle cx='12' cy='12' r='10' fill='#28a745' />
-                </svg>
-              </div>
-              <span className='pl-2'>Online</span>
-            </div>
-          ) : (
-            <span className='pl-2'>Offline</span>
-          )}
-        </div>
         <input
           type='text'
           className='border border-gray-300 rounded p-2 m-2 w-1/3 '
