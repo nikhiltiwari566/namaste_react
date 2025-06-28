@@ -16,7 +16,6 @@ class UserDetail extends React.Component {
     // Simulating fetching user data
     const data = await fetch('https://api.github.com/users/nikhiltiwari566');
     const user = await data.json();
-    console.log('user data', user);
     this.setState({
       userInfo: {
         name: user.name,
@@ -27,14 +26,13 @@ class UserDetail extends React.Component {
 
   render() {
     const { name, avatar_url } = this.state.userInfo;
-    console.log(avatar_url);
 
     return (
       <div className='user-detail'>
-        <h2>User Detail</h2>
+        <h2 className='pb-3 '>User Detail:</h2>
         <img className='user-avatar' src={avatar_url} alt='User Avatar' />
         <p>
-          <strong>Name:</strong> {name}
+          <strong>User Name:</strong> {name}
         </p>
       </div>
     );

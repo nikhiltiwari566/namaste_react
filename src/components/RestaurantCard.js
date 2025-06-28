@@ -1,5 +1,7 @@
 import { IMG_CDN_URL } from '../utils/constants';
+import { useContext } from 'react';
 
+import userContext from '../utils/UserContext';
 const RestaurantCard = ({
   cloudinaryImageId,
   name,
@@ -10,6 +12,7 @@ const RestaurantCard = ({
   avgRating,
   isOpen,
 }) => {
+  const { loggedInUser } = useContext(userContext);
   return (
     <div className='bg-white m-2 p-2 w-65 shadow-lg rounded-lg min-h-80'>
       <img
@@ -30,6 +33,7 @@ const RestaurantCard = ({
         </h4>
         <h4>{sla.lastMileTravelString}</h4>
         <h4>{costForTwo}</h4>
+        <h5>{loggedInUser.name}</h5>
       </span>
     </div>
   );

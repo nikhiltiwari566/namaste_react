@@ -8,11 +8,11 @@ const RestaurantCategories = ({ data }) => {
   };
   return (
     <div>
-      <div
-        className='w-6/12 mx-auto my-4 bg-gray-100 p-4 rounded shadow-lg p-4 '
-        onClick={() => handleClick()}
-      >
-        <div className='flex justify-between items-center mb-4'>
+      <div className='w-6/12 mx-auto my-4 bg-gray-100 p-4 rounded shadow-lg p-4 '>
+        <div
+          className='flex justify-between items-center mb-4'
+          onClick={() => handleClick()}
+        >
           <span className='font-bold underline'>
             {' '}
             {data.card.card.title} ({data.card.card.itemCards.length})

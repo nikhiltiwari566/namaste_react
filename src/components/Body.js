@@ -36,11 +36,8 @@ const Body = () => {
   }
 
   if (restaurants.length === 0) {
-    console.log('restaurants', restaurants.length);
-
     return <Shimmer />;
   }
-  console.log('restaurants', restaurants);
 
   return (
     <>
