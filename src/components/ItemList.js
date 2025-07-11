@@ -23,7 +23,7 @@ const ItemList = ({ items }) => {
             <div>
               <div className='absolute bg-white ml-4 mt-12 rounded shadow-lg flex items-center gap-2'>
                 <button
-                  className='bg-green-500 text-white p-0.5 rounded'
+                  className='bg-green-500 text-white p-0.5 rounded hover:opacity-60'
                   onClick={() => handleAddItem(item)}
                 >
                   Add
